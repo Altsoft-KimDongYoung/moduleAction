@@ -74,10 +74,11 @@ jobs:
             echo "$CHANGED_FILES"
             COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
             COMMIT_URL="${{ github.event.head_commit.url }}"
-            BODY="소비자 레포에서 감지된 ondaji-types 변경사항을 upstream 저장소에 반영합니다.
-            커밋 메시지: ${COMMIT_MESSAGE}
-            커밋 URL: ${COMMIT_URL}"
-            gh pr create --title "공통 모듈 자동 업데이트" \
+            COMMIT_AUTHOR="${{ github.event.head_commit.author.name }}"
+            BODY="커밋 메시지: ${COMMIT_MESSAGE}
+            커밋 URL: ${COMMIT_URL}
+            커밋 작성자: ${COMMIT_AUTHOR}"
+            gh pr create --title "${COMMIT_MESSAGE}" \
                         --body "$BODY" \
                         --base main --head $BRANCH
           fi
