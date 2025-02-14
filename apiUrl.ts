@@ -220,4 +220,12 @@ export const API_URL = {
   TUS: {
     UPLOAD: 'tus/upload',
   },
+  TEST: {
+    B: 'B',
+    A: 'A',
+  },
+  TEST_CLIENT: {
+    A: 'A',
+    B: 'B',
+  },
 } as const;
