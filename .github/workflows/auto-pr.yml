@@ -72,7 +72,10 @@ jobs:
             exit 0
           else
             echo "$CHANGED_FILES"
+            COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
+            COMMIT_URL="${{ github.event.head_commit.url }}"
+            BODY="소비자 레포에서 감지된 ondaji-types 변경사항을 upstream 저장소에 반영합니다.\n\n커밋 메시지: ${COMMIT_MESSAGE}\n커밋 URL: ${COMMIT_URL}\n\n변경된 파일 목록:\n${CHANGED_FILES}"
             gh pr create --title "공통 모듈 자동 업데이트" \
-                        --body "소비자 레포에서 감지된 ondaji-types 변경사항을 upstream 저장소에 반영합니다." \
+                        --body "$BODY" \
                         --base main --head $BRANCH
           fi
