@@ -64,7 +64,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           BRANCH=$(git rev-parse --abbrev-ref HEAD)
-          echo "Creating PR for branch $BRANCH"
-          gh pr create --title "공통 모듈 자동 업데이트" \
-                       --body "소비자 레포에서 감지된 ondaji-types 변경사항을 upstream 저장소에 반영합니다." \
-                       --base main --head $BRANCH
+          echo "현재 브랜치: $BRANCH"
+          git fetch origin main
+          CHANGED_FILES=$(git diff origin/main..$BRANCH --name-only | grep '^src/constants/ondaji/')
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "main과 $BRANCH 간에 src/constants/ondaji 내 변경된 파일이 없음."
+            exit 0
+          else
+            echo "$CHANGED_FILES"
+            gh pr create --title "공통 모듈 자동 업데이트" \
+                        --body "소비자 레포에서 감지된 ondaji-types 변경사항을 upstream 저장소에 반영합니다." \
+                        --base main --head $BRANCH
+          fi
