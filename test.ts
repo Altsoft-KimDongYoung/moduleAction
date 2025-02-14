@@ -1,1 +1,2 @@
-const TEST = 'TEST';
+const TEST = 'TEST_RN';
+const ONDAJI_TEST = 'ONDAJI_TEST';
