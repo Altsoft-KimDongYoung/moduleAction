@@ -229,5 +229,14 @@ export const API_URL = {
   TEST_CLIENT: {
     A: 'A',
     B: 'B',
+    C: 'C',
+    D: 'D',
+    E: 'E',
+    F: 'F',
+    G: 'G',
+    H: 'H',
+    I: 'I',
+    J: 'J',
+    K: 'K',
   },
 } as const;
