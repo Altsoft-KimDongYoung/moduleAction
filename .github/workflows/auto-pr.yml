@@ -1,0 +1,70 @@
+name: Auto PR for ondaji constants changes
+
+on:
+  push:
+    branches:
+      - test/auto-pr
+    paths:
+      - 'src/constants/ondaji/**'
+
+permissions:
+  contents: write
+
+jobs:
+  auto-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 전체 커밋 이력을 가져옵니다.
+          token: ${{ secrets.ACCESS_TOKEN }} # PAT 사용
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote if not exists
+        run: |
+          if ! git remote | grep -q upstream; then
+            git remote add upstream https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/altsoft5472344/ondaji_4gen_front_constants.git
+          fi
+
+      - name: Check for changes in ondaji-constants
+        id: check_changes
+        run: |
+          # 이전 commit과 현재 commit 간의 변경사항을 확인합니다.
+          if git diff ${{ github.event.before }} ${{ github.event.after }} --quiet --exit-code ondaji-constants/; then
+            echo "No changes in ondaji-constants."
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Detected changes in ondaji-constants."
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create branch and push subtree if changes exist
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          # 고유한 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
+          BRANCH="auto-ondaji-constants-$(date +%s)"
+          echo "Creating branch $BRANCH"
+          git checkout -b $BRANCH
+          # --squash 옵션을 사용해 커밋 이력을 단순화합니다.
+          git subtree push --prefix=src/constants/ondaji upstream $BRANCH
+
+      - name: Install GitHub CLI
+        if: steps.check_changes.outputs.changes == 'true'
+        run: sudo apt-get update && sudo apt-get install -y gh
+
+      - name: Create Pull Request using GitHub CLI
+        if: steps.check_changes.outputs.changes == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          echo "Creating PR for branch $BRANCH"
+          gh pr create --title "공통 모듈 자동 업데이트" \
+                       --body "소비자 레포에서 감지된 ondaji-types 변경사항을 upstream 저장소에 반영합니다." \
+                       --base main --head $BRANCH
