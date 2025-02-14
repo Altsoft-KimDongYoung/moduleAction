@@ -240,4 +240,7 @@ export const API_URL = {
     K: 'K',
     L: 'L',
   },
+  WEB_B: {
+    A: 'A',
+  },
 } as const;
