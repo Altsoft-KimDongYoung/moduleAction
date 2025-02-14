@@ -1,2 +1,1 @@
-const TEST = "ㅇㅁㅇㅁㅇㅁㅇㅁㅇㅁㅇTest20_CLIENT";
-
+const TEST = 'TEST';
