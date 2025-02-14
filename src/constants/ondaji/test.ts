@@ -1,2 +1,2 @@
-const TEST = 'TEST_RN';
-const ONDAJI_TEST = 'ONDAJI_TEST';
+const TEST = 'TEST_CLIENT';
+const ALT_TEST = 'ALT_TEST';
