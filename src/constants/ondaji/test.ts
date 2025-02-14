@@ -1,2 +1,2 @@
-const TEST = 'TEST_CLINET111';
+const TEST = 'TEST_CLINET1111111';
 const ALT_TEST = 'ALT_TEST';
