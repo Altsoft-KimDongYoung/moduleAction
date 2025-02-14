@@ -238,5 +238,6 @@ export const API_URL = {
     I: 'I',
     J: 'J',
     K: 'K',
+    L: 'L',
   },
 } as const;
