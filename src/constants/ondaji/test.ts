@@ -1,2 +1,2 @@
-const TEST = 'TEST_TEST';
-const ALT_TEST = 'TEST_ALT';
+const TEST = 'TEST_RN';
+const ONDAJI_TEST = 'ONDAJI_TEST';
