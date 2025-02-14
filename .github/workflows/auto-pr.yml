@@ -77,7 +77,7 @@ jobs:
             COMMIT_AUTHOR="${{ github.event.head_commit.author.name }}"
             BODY="커밋 메시지: ${COMMIT_MESSAGE}
             커밋 URL: ${COMMIT_URL}
-            커밋 작성자: ${COMMIT_AUTHOR}"
+            커밋 작성자: @${COMMIT_AUTHOR}"
             gh pr create --title "${COMMIT_MESSAGE}" \
                         --body "$BODY" \
                         --base main --head $BRANCH
