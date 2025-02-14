@@ -244,4 +244,5 @@ export const API_URL = {
     A: 'A',
     B: 'B',
   },
+  RN_A: { A: 'RN_A', B: 'RN_B' },
 } as const;
