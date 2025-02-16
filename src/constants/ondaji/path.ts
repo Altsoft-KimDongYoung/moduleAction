@@ -185,5 +185,6 @@ export const PATH = {
     B: 'B',
     C: 'C',
     D: 'D',
+    E: 'E',
   },
 } as const;
