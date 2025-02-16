@@ -3,7 +3,7 @@ name: Auto PR for ondaji constants changes
 on:
   push:
     branches:
-      - main
+      - test/gitAction
     paths:
       - "src/constants/ondaji/**"
 
