@@ -58,6 +58,8 @@ jobs:
           git fetch origin test/gitAction
           git checkout -B test/gitAction origin/test/gitAction
 
+          git update-ref -d refs/cache/subtree/0c23527dba813cffe044d602515a827a3957473e
+
           # 고유한 로컬 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
           LOCAL_BRANCH="auto-ondaji-constants-$(date +%s)"
           echo "Creating local branch: $LOCAL_BRANCH"
