@@ -68,6 +68,12 @@ jobs:
           BRANCH="auto-ondaji-constants-$(date +%s)"
           echo "Creating branch $BRANCH"
 
+          COMMIT_HASH=$(git subtree split --prefix=src/constants/ondaji)
+          echo "생성된 subtree split 커밋: $COMMIT_HASH"
+          git show $COMMIT_HASH
+
+          git ls-remote ondaji-constants | grep $COMMIT_HASH
+
           git subtree push --prefix=src/constants/ondaji/ ondaji-constants test1
 
       - name: Install GitHub CLI
