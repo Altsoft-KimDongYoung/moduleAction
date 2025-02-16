@@ -58,6 +58,14 @@ jobs:
           git fetch origin test/gitAction
           git checkout -B test/gitAction origin/test/gitAction
 
+
+          # 캐시 삭제: Git subtree가 사용하는 캐시 디렉토리 삭제
+          echo "Deleting subtree cache in .git/refs/cache/subtree/*"
+          rm -rf .git/refs/cache/subtree/* || true
+          echo "Deleting any cache in .git/subtree-cache/*"
+          rm -rf .git/subtree-cache/* || true
+
+
           # 고유한 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
           REMOTE_BRANCH="auto-ondaji-constants-$(date +%s)"
 
