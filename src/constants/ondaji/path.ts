@@ -180,4 +180,10 @@ export const PATH = {
         `/signages/reserve/detail/${groupId}/${ratioType}`,
     },
   },
+  TEST: {
+    A: 'A',
+    B: 'B',
+    C: 'C',
+    D: 'D',
+  },
 } as const;
