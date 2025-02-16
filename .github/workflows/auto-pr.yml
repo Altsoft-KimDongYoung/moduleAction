@@ -54,9 +54,9 @@ jobs:
           git remote -v
           git branch -a
 
-          # origin의 최신 main 브랜치를 업데이트 및 체크아웃
-          git fetch origin main
-          git checkout -B main origin/main
+          # origin의 최신 test/gitAction 브랜치를 업데이트 및 체크아웃
+          git fetch origin test/gitAction
+          git checkout -B test/gitAction origin/test/gitAction
 
           # 고유한 로컬 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
           LOCAL_BRANCH="auto-ondaji-constants-$(date +%s)"
