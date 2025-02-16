@@ -58,7 +58,7 @@ jobs:
           git remote -v
 
           git branch -a
-
+          git fetch --unshallow || echo "이미 전체 클론 상태임"
 
           git fetch origin test/gitAction
 
