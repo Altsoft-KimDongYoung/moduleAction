@@ -26,6 +26,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Show Git remotes
+        run: |
+          echo "현재 등록된 Git 원격 저장소:"
+          git remote -v
+
       - name: Add ondaji-constants remote if not exists
         run: |
           if ! git remote | grep -q ondaji-constants; then
