@@ -62,7 +62,7 @@ jobs:
           REMOTE_BRANCH="auto-ondaji-constants-$(date +%s)"
 
           # 원격 저장소의 $REMOTE_BRANCH 브랜치로 푸시
-          git subtree push --prefix=src/constants/ondaji ondaji-constants $REMOTE_BRANCH --force
+          git subtree push --prefix=src/constants/ondaji ondaji-constants $REMOTE_BRANCH 
 
           # 생성한 로컬 브랜치 이름을 output 변수로 설정하여 이후 단계에서 사용할 수 있도록 합니다.
           echo "::set-output name=local_branch::$REMOTE_BRANCH"
