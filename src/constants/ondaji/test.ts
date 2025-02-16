@@ -1,1 +1,0 @@
-const TEST = 'Test20';
