@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "push:constants": "git subtree push --prefix=src/constants/ondaji ondaji-constants main",
     "update:constants": "git subtree pull --prefix=src/constants/ondaji ondaji-constants main --squash"
   },
   "author": "",
