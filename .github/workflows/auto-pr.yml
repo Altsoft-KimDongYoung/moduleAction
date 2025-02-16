@@ -69,7 +69,7 @@ jobs:
           BRANCH="auto-ondaji-constants-$(date +%s)"
           echo "Creating branch $BRANCH"
 
-          git subtree push --prefix=src/constants/ondaji ondaji-constants $BRANCH
+          git subtree push --prefix=src/constants/ondaji/ ondaji-constants $BRANCH
 
       - name: Install GitHub CLI
         if: steps.check_changes.outputs.changes == 'true'
