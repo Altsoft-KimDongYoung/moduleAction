@@ -58,7 +58,6 @@ jobs:
           git remote -v
 
           git branch -a
-          git fetch --unshallow || echo "이미 전체 클론 상태임"
 
           git fetch origin test/gitAction
 
@@ -69,14 +68,7 @@ jobs:
           BRANCH="auto-ondaji-constants-$(date +%s)"
           echo "Creating branch $BRANCH"
 
-          # 서브트리 split을 통해 임시 브랜치 생성
-          git subtree split --prefix=src/constants/ondaji -b temp-subtree-branch
-
-          # 임시 브랜치를 원격의 새 브랜치로 push
-          git push ondaji-constants temp-subtree-branch:$BRANCH --force
-
-          # 임시 브랜치 삭제 (필요 시)
-          git branch -D temp-subtree-branch
+          git subtree push --prefix=src/constants/ondaji/ ondaji-constants test1
 
       - name: Install GitHub CLI
         if: steps.check_changes.outputs.changes == 'true'
