@@ -70,6 +70,7 @@ jobs:
 
           echo "콘솔 1"
           # 지정한 폴더(src/constants/ondaji)에 대한 subtree split을 수행하여 임시 브랜치 생성
+          TEMP_BRANCH="temp-branch-name"
           git subtree split --prefix=src/constants/ondaji -b $TEMP_BRANCH
 
           echo "콘솔 2"
