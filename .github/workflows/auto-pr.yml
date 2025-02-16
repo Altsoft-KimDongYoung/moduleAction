@@ -60,7 +60,7 @@ jobs:
           git branch -a
 
 
-          git checkout main origin/main
+          git checkout remotes/origin/main
 
           # 고유한 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
           BRANCH="auto-ondaji-constants-$(date +%s)"
