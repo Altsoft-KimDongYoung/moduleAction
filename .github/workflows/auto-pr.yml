@@ -68,14 +68,6 @@ jobs:
           BRANCH="auto-ondaji-constants-$(date +%s)"
           echo "Creating branch $BRANCH"
 
-          COMMIT_HASH=$(git subtree split --prefix=src/constants/ondaji)
-          echo "생성된 subtree split 커밋: $COMMIT_HASH"
-          git show $COMMIT_HASH
-
-          git ls-remote ondaji-constants | grep $COMMIT_HASH
-
-          TEMP_BRANCH="temp-subtree-branch"
-
           echo "콘솔 1"
           # 지정한 폴더(src/constants/ondaji)에 대한 subtree split을 수행하여 임시 브랜치 생성
           git subtree split --prefix=src/constants/ondaji -b $TEMP_BRANCH
