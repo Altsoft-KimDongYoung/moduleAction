@@ -62,7 +62,7 @@ jobs:
           rm -rf .git/refs/cache/subtree/*
 
           # 고유한 로컬 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
-          LOCAL_BRANCH="auto-ondaji-constants-$(date +%s)"
+          LOCAL_BRANCH="auto111-ondaji-constants-$(date +%s)"
           echo "Creating local branch: $LOCAL_BRANCH"
           git checkout -b $LOCAL_BRANCH
 
