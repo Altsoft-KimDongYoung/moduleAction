@@ -57,11 +57,12 @@ jobs:
           echo "현재 레포지토리: ${{ github.repository }}"
           git remote -v
 
+          git checkout -b main
+
           # 고유한 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
           BRANCH="auto-ondaji-constants-$(date +%s)"
           echo "Creating branch $BRANCH"
 
-          # --squash 옵션을 사용해 커밋 이력을 단순화합니다.
           git subtree push --prefix=src/constants/ondaji ondaji-constants $BRANCH
 
       - name: Install GitHub CLI
