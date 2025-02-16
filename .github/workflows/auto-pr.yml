@@ -77,7 +77,7 @@ jobs:
           git push ondaji-constants $TEMP_BRANCH:$REMOTE_BRANCH --force
 
           # 작업 후 로컬 임시 브랜치 삭제 
-          git branch -D $TEMP_BRANCH
+          # git branch -D $TEMP_BRANCH
 
           # 생성한 로컬 브랜치 이름을 output 변수로 설정하여 이후 단계에서 사용할 수 있도록 합니다.
           echo "::set-output name=local_branch::$LOCAL_BRANCH"
