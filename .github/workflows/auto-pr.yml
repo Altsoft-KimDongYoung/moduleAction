@@ -57,7 +57,7 @@ jobs:
           echo "현재 레포지토리: ${{ github.repository }}"
           git remote -v
 
-          git checkout -b main
+          git checkout main origin/main
 
           # 고유한 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
           BRANCH="auto-ondaji-constants-$(date +%s)"
