@@ -59,28 +59,14 @@ jobs:
           git checkout -B test/gitAction origin/test/gitAction
 
 
-          # 고유한 로컬 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
-          LOCAL_BRANCH="auto-ondaji-constants-$(date +%s)"
-          echo "Creating local branch: $LOCAL_BRANCH"
-          git checkout -b $LOCAL_BRANCH
+          # 고유한 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
+          REMOTE_BRANCH="auto-ondaji-constants-$(date +%s)"
 
-          # git subtree split 명령어를 사용하여 공통모듈 디렉토리의 커밋 내역만 분리해 별도의 임시 브랜치를 생성합니다.
-          TEMP_BRANCH="temp-branch-$(date +%s)"
-          # git subtree split --prefix=src/constants/ondaji -b $TEMP_BRANCH
-
-          # 원격에 등록할 브랜치 이름을 로컬 브랜치 이름과 동일하게 설정
-          REMOTE_BRANCH="$LOCAL_BRANCH"
-          echo "원격에 생성할 브랜치: $REMOTE_BRANCH"
-
-          # 원격에 임시 브랜치 push
-          # $TEMP_BRANCH 브랜치 내용을 원격 저장소의 $REMOTE_BRANCH 브랜치로 푸시
-          git subtree push ondaji-constants $REMOTE_BRANCH 
-
-          # 작업 후 로컬 임시 브랜치 삭제 
-          # git branch -D $TEMP_BRANCH
+          # 원격 저장소의 $REMOTE_BRANCH 브랜치로 푸시
+          git subtree push --prefix=src/constants/ondaji ondaji-constants $REMOTE_BRANCH 
 
           # 생성한 로컬 브랜치 이름을 output 변수로 설정하여 이후 단계에서 사용할 수 있도록 합니다.
-          echo "::set-output name=local_branch::$LOCAL_BRANCH"
+          echo "::set-output name=local_branch::$REMOTE_BRANCH"
 
       - name: Install GitHub CLI
         if: steps.check_changes.outputs.changes == 'true'
