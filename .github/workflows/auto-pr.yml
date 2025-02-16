@@ -61,10 +61,15 @@ jobs:
 
           rm -rf .git/refs/cache/subtree/*
 
+
           # 고유한 로컬 브랜치 이름 생성 (예: auto-ondaji-constants-타임스탬프)
           LOCAL_BRANCH="auto111-ondaji-constants-$(date +%s)"
           echo "Creating local branch: $LOCAL_BRANCH"
           git checkout -b $LOCAL_BRANCH
+
+
+          git show 0c23527dba813cffe044d602515a827a3957473e
+
 
           # git subtree split 명령어를 사용하여 공통모듈 디렉토리의 커밋 내역만 분리해 별도의 임시 브랜치를 생성합니다.
           TEMP_BRANCH="temp-branch-$(date +%s)"
