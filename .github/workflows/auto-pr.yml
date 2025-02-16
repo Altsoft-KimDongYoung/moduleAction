@@ -26,10 +26,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Add upstream remote if not exists
+      - name: Add ondaji-constants remote if not exists
         run: |
-          if ! git remote | grep -q upstream; then
-            git remote add upstream https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/altsoft5472344/ondaji_4gen_front_constants.git
+          if ! git remote | grep -q ondaji-constants; then
+            git remote add ondaji-constants https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/altsoft5472344/ondaji_4gen_front_constants.git
           fi
 
       - name: Check for changes in ondaji-constants
@@ -52,7 +52,7 @@ jobs:
           echo "Creating branch $BRANCH"
           git checkout -b $BRANCH
           # --squash 옵션을 사용해 커밋 이력을 단순화합니다.
-          git subtree push --prefix=src/constants/ondaji upstream $BRANCH
+          git subtree push --prefix=src/constants/ondaji ondaji-constants $BRANCH
 
       - name: Install GitHub CLI
         if: steps.check_changes.outputs.changes == 'true'
